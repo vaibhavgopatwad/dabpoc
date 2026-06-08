@@ -27,7 +27,7 @@ jobs:
         uses: databricks/setup-cli@main
 
       - name: Validate bundle
-        working-directory: ./path-to-your-bundle
+        working-directory: /Workspace/Users/gopatwadv@gmail.com/POC/dabpoc/dabproject
         run: databricks bundle validate -t dev
 
   deploy-dev:
