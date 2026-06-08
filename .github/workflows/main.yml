@@ -48,5 +48,5 @@ jobs:
         run: databricks bundle validate -t dev
 
       - name: Deploy bundle
-        working-directory: ./path-to-your-bundle
+        working-directory: /Workspace/Users/gopatwadv@gmail.com/POC/dabpoc/dabproject/databricks.yml
         run: databricks bundle deploy -t dev
