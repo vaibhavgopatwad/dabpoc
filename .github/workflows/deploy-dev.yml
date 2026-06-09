@@ -1,0 +1,36 @@
+# filename: .github/workflows/deploy-dev.yml
+name: Deploy Databricks Bundle to Dev
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy-dev:
+    name: Deploy to Dev
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Databricks CLI
+        run: pip install databricks-cli
+
+      - name: Validate Databricks bundle
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: databricks bundle validate
+
+      - name: Deploy bundle to dev
+        env:
+          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: databricks bundle deploy -t dev
