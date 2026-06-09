@@ -17,7 +17,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: bundle
+        working-directory: ./dabproject
 
     steps:
       - name: Checkout repository
