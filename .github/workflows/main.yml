@@ -1,5 +1,5 @@
 # filename: .github/workflows/databricks-free-edition-poc.yml
-name: Databricks Free Edition POC
+name: databricks deployment poc
 
 on:
   pull_request:
@@ -23,11 +23,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      - name: Show repo structure
+        run: |
+          pwd
+          ls -la
+          find . -name databricks.yml
+
       - name: Setup Databricks CLI
         uses: databricks/setup-cli@main
 
       - name: Validate bundle
-        working-directory: /Workspace/Users/gopatwadv@gmail.com/POC/dabpoc/dabproject
+        working-directory: ./dabproject
         run: databricks bundle validate -t dev
 
   deploy-dev:
@@ -40,13 +46,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      - name: Show repo structure
+        run: |
+          pwd
+          ls -la
+          find . -name databricks.yml
+
       - name: Setup Databricks CLI
         uses: databricks/setup-cli@main
 
       - name: Validate bundle
-        working-directory: /Workspace/Users/gopatwadv@gmail.com/POC/dabpoc/dabproject/databricks.yml
+        working-directory: ./dabproject
         run: databricks bundle validate -t dev
 
       - name: Deploy bundle
-        working-directory: /Workspace/Users/gopatwadv@gmail.com/POC/dabpoc/dabproject/databricks.yml
+        working-directory: ./dabproject
         run: databricks bundle deploy -t dev
